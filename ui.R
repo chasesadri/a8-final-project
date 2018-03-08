@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+library("tidyr")
+library("dplyr")
+library("plotly")
+
+# lists the choices for the dropdownmenu
+>>>>>>> 4ecd17716a0c64cba69b75bff0ea5bd80650bb6c
 year.choices <- c("1967", "1968", "1969", "1970", "1971", 
                   "1972", "1973", "1974", "1975", "1976",
                   "1977", "1978", "1979", "1980", "1981", 
@@ -9,6 +17,7 @@ year.choices <- c("1967", "1968", "1969", "1970", "1971",
                   "2007", "2008", "2009", "2010", "2011",
                   "2012", "2013", "2014")
 
+<<<<<<< HEAD
 my.ui <- fluidPage(
   navbarPage("U.S. Highway Statistics",
     tabPanel("Gasoline Cost and Fuel Use Information",
@@ -97,3 +106,43 @@ my.ui <- fluidPage(
 )
 
 shinyUI(my.ui)
+=======
+# creates 2 tabs, one for the table and one for the map
+my.ui <- fluidPage(
+  navbarPage("U.S. Highway Statistics",
+             tabPanel("Fatalities",
+                      titlePanel("Fatalities"),
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput("Range", label = "Year",
+                                      choices = year.choices)
+                          
+                        ),
+                        mainPanel(
+                          tabsetPanel(
+                            type = "tabs",
+                            tabPanel("Table", textOutput("Explanation"),
+                                     dataTableOutput("table")),
+                            tabPanel("Map", 
+                                     textOutput("map.explanation"), 
+                                     plotOutput("map", click = "plot_click"),
+                                     textOutput("print"))
+                            
+                          )
+                          
+                        )
+                      )
+             
+                      
+             ),
+             tabPanel("Muhammed"
+                      #paste your stuff here
+             ),
+             tabPanel("Changyu"
+                      #paste your stuff here
+             ))
+)
+shinyUI(my.ui)   
+
+                      
+>>>>>>> 4ecd17716a0c64cba69b75bff0ea5bd80650bb6c
