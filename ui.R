@@ -82,7 +82,7 @@ my.ui <- fluidPage(
                  tabsetPanel(
                    type = "tabs",
                    tabPanel("Table", textOutput("Explanation"),
-                            dataTableOutput("table")),
+                            dataTableOutput("table1")),
                    tabPanel("Map", 
                             textOutput("map.explanation"), 
                             plotOutput("map", click = "plot_click"),

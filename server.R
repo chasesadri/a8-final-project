@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 library(shiny)
 library(dplyr)
 library(ggplot2)
@@ -39,17 +38,7 @@ my.server <- function(input, output) {
     }
     paste0(xy_str(input$plot_click))
   })
-}
-
-shinyServer(my.server)
-=======
-library("ggplot2")
-library("maps")
-library("fiftystater")
-
-# # deifnes my.server by taking in state name and year as
-# arguments and returns a table with filtered data
-my.server <- function(input, output) {
+  
   create.table <- function(Year){
     table <- data %>%
       select(States, Year)
@@ -57,7 +46,7 @@ my.server <- function(input, output) {
   }
   
   # returns a table with choices from ui
-  output$table <- renderDataTable({
+  output$table1 <- renderDataTable({
     return(create.table(input$Range))
   })
   
@@ -81,11 +70,11 @@ my.server <- function(input, output) {
     table[, "States"] <- tolower(table[, "States"])
     table[, "States"] <-trimws(table[, "States"], which = c("right"))
     map.states <- left_join(states, table, 
-                              by = "States")
+                            by = "States")
     map.states[, 7] <- as.numeric(gsub(",", "", map.states[,7]))
     ggplot(map.states, aes(long, lat, 
-                              group = group, 
-                              fill = cut(map.states[ ,7], 
+                           group = group, 
+                           fill = cut(map.states[ ,7], 
                                       breaks = 5))) +
       geom_polygon(color = "grey10", show.legend = TRUE) +
       scale_fill_brewer(palette = "Reds") +
@@ -106,6 +95,6 @@ my.server <- function(input, output) {
   output$print <- renderText ({
     paste(input$plot_click$x, ", ", input$plot_click$y)
   })
-  
-  }
->>>>>>> 4ecd17716a0c64cba69b75bff0ea5bd80650bb6c
+}
+
+shinyServer(my.server)

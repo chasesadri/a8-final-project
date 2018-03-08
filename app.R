@@ -1,21 +1,13 @@
-<<<<<<< HEAD
 # install.packages("shiny")
 library("shiny")
 library("sp")
-
-shinyApp(ui = my.ui, server = my.server)
-=======
-library("tidyr")
-library("shiny")
 library("sp")
 library("maptools")
 library("dplyr")
 
-# loads data sets
 data <- read.csv('data/fatalities_data.csv', 
                  stringsAsFactors =  FALSE, strip.white = TRUE)
 
-# renames column names of data
 colnames(data) <- c("States", "1967", "1968", "1969", "1970",
                     "1971", "1972", "1973", "1974", "1975",
                     "1976", "1977", "1978", "1979", "1980",
@@ -28,11 +20,4 @@ colnames(data) <- c("States", "1967", "1968", "1969", "1970",
                     "2011", "2012", "2013", "2014")
 
 
-
-source("ui.R")
-source("server.R")
-
 shinyApp(ui = my.ui, server = my.server)
-
-
->>>>>>> 4ecd17716a0c64cba69b75bff0ea5bd80650bb6c
