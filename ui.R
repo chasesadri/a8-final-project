@@ -95,12 +95,101 @@ my.ui <- fluidPage(
              
              
     ),
-    tabPanel("Muhammed"
-             #paste your stuff here
-             ),
-    tabPanel("Changyu"
-             #paste your stuff here
-             ))
-)
+    tabPanel("Roadway Spending and Metric Fuel & Miles Per Driver",
+             sidebarLayout(
+               sidebarPanel(
+                 sliderInput("range1", "Range of Years For Coorelation:", 
+                             value = c(2005, 2010),
+                             min = 2004,
+                             max = 2014),
+                 sliderInput("yr", "Year of Highway Data:",
+                             value = 2008,
+                             min = 2004,
+                             max = 2014),
+                 selectInput("state", "Choose a U.S Region:", state.choice, selected = "All U.S Regions")
+               ),
+               mainPanel(
+                 h1("Map Visualizations:"),
+                 p("Being a resident in the state of Washington,
+                   I get to experience one of the worst experiences 
+                   as a commuter. Commuters in this state spend a lot
+                   of time wasted in traffic due to the never-ending
+                   construction of the roads. To a commuter here,
+                   it feels like there is always construction work
+                   on the same street without any progress at all. We  
+                   decided to look into data from the Office of Highway
+                   Policy Information, to explore if there is a 
+                   relationship between the vehicle miles traveled, 
+                   the motor fuel use, and the revenue used on highways annually 
+                   on a state-level. The following data visualizations intend to 
+                   paint a picture between the relationship of these three variables, 
+                   in hopes of exploring whether states are spending so much 
+                   on building new highways due to the amount of commuting. 
+                   (IMPORTANT: Alaska was not included in our data in hopes of
+                   not over-complicating the data visualizations."),
+                 br(),
+                 h4("Vehicle Miles of Travel Per State:"),
+                 p("The map below is a chloropleth map showing the vehicle miles traveled for each state 
+                   annually in millions of miles. We find this data important since 
+                   it gives us an idea about the amount of commuting that is done
+                   annually in each state, and how that compares to other states."),
+                 plotOutput("Vehicle_Miles", click = "VM_Click"),
+                 h4("Motor-Fuel Use Per State"),
+                 p("The map below is a chloropleth map showing the motor-fuel use for each state 
+                   annually in thousands of gallons. We find this specific data significant
+                   since it gives us an idea of how much fuel is being put to use
+                   in each state, and how that affects the investment in roads. For example, 
+                   one might assume that if a state consumes more fuel than usual, then 
+                   the state would invest more on roads in hopes of encouraging 
+                   it's drivers to spend more on fuels."),
+                 plotOutput("Motor_Fuel", click = "MF_Click"),
+                 h4("Revenue Used For Roads Per State:"),
+                 p("The map below is a chloropleth map showing the revenue used for roads for each state 
+                   annually in thousands of dollars. We find this information important since 
+                   it directly gives un an idea of how much each state is invested in it's 
+                   roads and how important that is to each state."),
+                 plotOutput("revenue", click = "Rev_Click"), 
+                 p(textOutput("coorelation"))
+                 )
+                 )
+                 ),
+    tabPanel("Changyu",
+             titlePanel("How do the percent of maintenance outlays 
+                        in overall capital outlays change from 1999 to 2014?"),
+             sidebarLayout(
+               sidebarPanel(
+                 sliderInput("year1",
+                             "Which year:",
+                             min = 1999, 
+                             max = 2014,
+                             value = c(1999, 2010)
+                 )
+               ),
+               
+               mainPanel(
+                 tabsetPanel(type = "tabs",
+                             tabPanel("Outlay",
+                                      strong(h2("Map of Percent of Maintenance Outlays 
+                                                in Overall Capital Outlays")),
+                                      strong(em("The color with higher saturation 
+                                                represents larger amount of increase in 
+                                                the percentage and the color with lower 
+                                                saturation represents larger amount of 
+                                                decrease in the percentage.")),
+                                      #verbatimTextOutput("tmp"),
+                                      plotOutput("plot1", click = "plot_click"),
+                                      h3("We may use this map to explore if there is any
+                                         relation between percent of maintenance in capital outlays
+                                         and fatalities rate.")
+                                      #verbatimTextOutput("info")
+                                      #tableOutput("table")
+                                      )
+                                      )
+                 
+                                      )
+               )
+             
+                 )
+))
 
 shinyUI(my.ui)
